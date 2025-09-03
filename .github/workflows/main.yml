@@ -1,0 +1,22 @@
+name: Secret Management Example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  use-secret:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Print masked secret
+        run: echo "My API Key is ${{ secrets.MY_API_KEY }}"
+
+      - name: Use secret in script
+        run: |
+          echo "Calling API with key..."
+          curl -H "Authorization: Bearer ${{ secrets.MY_API_KEY }}" https://api.example.com/data
+
+      - name: Use environment-specific secret
+        run: echo "DB Password is ${{ secrets.DB_PASSWORD }}"
