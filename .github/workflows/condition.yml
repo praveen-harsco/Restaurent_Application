@@ -1,0 +1,19 @@
+name: Scheduled Print Job
+
+on:
+  schedule:
+    # Runs every day at 2 AM UTC
+    - cron: "21 14 * * *"
+
+  # Optional: manual trigger
+  workflow_dispatch:
+
+jobs:
+  print-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a message
+        run: echo "Hello! This job ran on schedule 🚀"
+
+      - name: Print current date
+        run: date
